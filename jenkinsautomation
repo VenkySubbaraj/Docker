@@ -1,0 +1,30 @@
+FROM ubuntu
+RUN apt update
+RUN apt install nginx -y
+EXPOSE 80
+RUN apt install curl -y
+RUN curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | tee \
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+RUN echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+RUN apt-get update
+RUN apt-get install ssh -y
+RUN yes '' | ssh-keygen -N ''
+RUN cat ~/.ssh/id_rsa.pub
+RUN apt-get install jenkins -y
+RUN apt-get install openjdk-8-jre-headless -y 
+EXPOSE 8080
+RUN apt-get install systemctl -y
+RUN systemctl enable nginx
+RUN systemctl start nginx
+RUN systemctl enable jenkins
+RUN systemctl start jenkins
+WORKDIR /var/lib/jenkins/secrets
+RUN cat initialAdminPassword
+WORKDIR /var/www 
+RUN apt-get install git -y
+RUN git clone git@github.com:VenkySubbaraj/html.git -y
+
+
+
