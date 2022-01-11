@@ -1,0 +1,14 @@
+FROM ubuntu
+RUN apt update
+RUN mkdir /opt/tomcat/
+WORKDIR /opt/tomcat
+RUN apt install wget -y
+RUN wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.73/bin/apache-tomcat-8.5.73.tar.gz
+RUN tar xvzf apache*.tar.gz
+RUN mv apache-tomcat-8.5.73/* /opt/tomcat/
+RUN apt install default-jdk -y
+RUN java -version
+WORKDIR /opt/tomcat/webapps
+RUN wget https://github.com/AKSarav/SampleWebApp/raw/master/dist/SampleWebApp.war
+EXPOSE 8080
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]

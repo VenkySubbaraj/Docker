@@ -1,0 +1,7 @@
+FROM ubuntu 
+RUN mkdir venkat
+ENTRYPOINT "echo"
+CMD "venkat directory folder is created"
+ENTRYPOINT "echo"
+CMD "HELLO WORLD"
+
