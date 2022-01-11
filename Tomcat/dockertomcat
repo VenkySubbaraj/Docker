@@ -10,5 +10,7 @@ RUN apt install default-jdk -y
 RUN java -version
 WORKDIR /opt/tomcat/webapps
 RUN wget https://github.com/AKSarav/SampleWebApp/raw/master/dist/SampleWebApp.war
+                        (or)
+ADD SampleWebApp .
 EXPOSE 8080
 CMD ["/opt/tomcat/bin/catalina.sh", "run"]
