@@ -24,7 +24,6 @@ WORKDIR /var/lib/jenkins/secrets
 RUN cat initialAdminPassword
 WORKDIR /var/www 
 RUN apt-get install git -y
-RUN git clone git@github.com:VenkySubbaraj/html.git -y
 
 
 
