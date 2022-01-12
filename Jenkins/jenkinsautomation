@@ -1,4 +1,6 @@
+# This is for pulling the OS image from docker 
 FROM ubuntu
+
 RUN apt update
 RUN apt install nginx -y
 EXPOSE 80
@@ -20,8 +22,6 @@ RUN systemctl enable nginx
 RUN systemctl start nginx
 RUN systemctl enable jenkins
 RUN systemctl start jenkins
-WORKDIR /var/lib/jenkins/secrets
-RUN cat initialAdminPassword
 WORKDIR /var/www 
 RUN apt-get install git -y
 
