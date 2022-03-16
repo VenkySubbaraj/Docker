@@ -1,0 +1,20 @@
+FROM ubuntu
+RUN apt update -y
+RUN apt install default-jdk -y
+RUN groupadd tomcat
+RUN useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+WORKDIR /tmp
+RUN apt install curl -y
+RUN mkdir /opt/tomcat
+WORKDIR /opt/tomcat
+COPY ./apache-tomcat-9.0.* ./
+RUN chgrp -R tomcat /opt/tomcat
+RUN chmod -R g+r conf
+RUN chmod g+x conf
+#RUN chown -R tomcat webapps/ /work/ /temp/ logs/
+COPY ./tomcat.service /etc/systemd/system/
+#RUN service daemon-reload
+WORKDIR /opt/tomcat/bin
+RUN chmod -R 777 ./startup.sh
+#RUN ./startup.sh run
+
