@@ -22,7 +22,7 @@ RUN systemctl enable nginx
 RUN systemctl start nginx
 RUN systemctl enable jenkins
 RUN systemctl start jenkins
-WORKDIR /var/www 
+WORKDIR /var/www
 RUN apt-get install git -y
 
 
